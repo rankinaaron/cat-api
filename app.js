@@ -7,16 +7,7 @@ const cors = require('cors');
 const catRoute = require('./routes/cats');
 const voteRoute = require('./routes/votes');
 
-
 const app = express();
-
-if (process.env.NODE_ENV === 'production') {
-	app.use(express.static('client/build'));
-}
-
-app.get('*', (req, res) => {
-	res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-});
 
 app.use(logger('dev'));
 app.use(express.json());
