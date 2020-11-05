@@ -40,7 +40,7 @@ const sendHttpRequest = (method, url, data) => {
 };
 
 const getCat = () => {
-    sendHttpRequest("GET", "http://localhost:3000").then(
+    sendHttpRequest("GET", "https://rocky-tundra-37502.herokuapp.com/cats").then(
         (res) => {
             heroCat.src = res[0].url;
             like.id = res[0].id;
@@ -51,14 +51,14 @@ const getCat = () => {
 };
 
 const getVotes = () => {
-    sendHttpRequest("GET", "http://localhost:3000/votes").then((res) => {
+    sendHttpRequest("GET", "https://rocky-tundra-37502.herokuapp.com/votes").then((res) => {
         console.log(res);
         res.forEach((vote) => createCatDiv(vote.value, vote.image_id, vote.id));
     });
 };
 
 function likeCat() {
-    sendHttpRequest("POST", "http://localhost:3000/votes", {
+    sendHttpRequest("POST", "https://rocky-tundra-37502.herokuapp.com/votes", {
         image_id: this.id,
         value: 1
     });
@@ -67,7 +67,7 @@ function likeCat() {
 }
 
 function dislikeCat() {
-    sendHttpRequest("POST", "http://localhost:3000/votes", {
+    sendHttpRequest("POST", "https://rocky-tundra-37502.herokuapp.com/votes", {
         image_id: this.id,
         value: -1
     });
@@ -85,7 +85,7 @@ const createCatDiv = (disposition, imageID, voteID) => {
     catDiv.id = voteID;
     catDiv.appendChild(catImg);
 
-    const url = "http://localhost:3000/" + imageID;
+    const url = "https://rocky-tundra-37502.herokuapp.com/" + imageID;
     sendHttpRequest("GET", url).then((res) => {
         catImg.src = res.url;
     });
@@ -108,9 +108,9 @@ const createCatDiv = (disposition, imageID, voteID) => {
 /* Also doesn't work, why? :( */
 
 const clearVotes = () => {
-    sendHttpRequest("GET", "https://api.thecatapi.com/v1/votes").then((res) => {
+    sendHttpRequest("GET", "https://rocky-tundra-37502.herokuapp.com/votes").then((res) => {
         res.forEach((vote) => {
-            const url = "https://api.thecatapi.com/v1/votes/" + vote.id;
+            const url = "https://rocky-tundra-37502.herokuapp.com/votes/" + vote.id;
             sendHttpRequest("DELETE", url).then((res) => console.log(res));
         });
     });
