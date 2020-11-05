@@ -85,7 +85,7 @@ const createCatDiv = (disposition, imageID, voteID) => {
     catDiv.id = voteID;
     catDiv.appendChild(catImg);
 
-    const url = "https://rocky-tundra-37502.herokuapp.com/" + imageID;
+    const url = "https://rocky-tundra-37502.herokuapp.com/votes/" + imageID;
     sendHttpRequest("GET", url).then((res) => {
         catImg.src = res.url;
     });
