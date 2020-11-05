@@ -52,6 +52,7 @@ const getCat = () => {
 
 const getVotes = () => {
     sendHttpRequest("GET", "https://rocky-tundra-37502.herokuapp.com/votes").then((res) => {
+        console.log(res);
         res.forEach((vote) => createCatDiv(vote.value, vote.image_id, vote.id));
     });
 };
@@ -84,7 +85,7 @@ const createCatDiv = (disposition, imageID, voteID) => {
     catDiv.id = voteID;
     catDiv.appendChild(catImg);
 
-    const url = 'https://rocky-tundra-37502.herokuapp.com/votes'
+    const url = "https://rocky-tundra-37502.herokuapp.com/cats/" + imageID;
     sendHttpRequest("GET", url).then((res) => {
         catImg.src = res.url;
     });
