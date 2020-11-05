@@ -15,8 +15,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
 
-app.use('/', catRoute);
 app.use('/votes', voteRoute);
+app.use('/', catRoute);
 
 // catch 404 and forward to error handler
 app.use( (req, res, next) => {

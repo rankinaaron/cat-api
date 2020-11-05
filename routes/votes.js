@@ -4,7 +4,6 @@ const voteModel = require('../models/vote.model');
 
 /* GET all votes */
 router.get('/', (req, res, next) => {
-  res.send('in here');
   voteModel.find().then( doc => {
       res.json(doc)
   })
@@ -15,7 +14,6 @@ router.get('/', (req, res, next) => {
 
 /* POST a new vote */
 router.post('/', (req, res, next) => {
-  console.log('in here');
   if (!req.body) {
     return res.status(400).send('Request body is missing');
   }
