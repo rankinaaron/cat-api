@@ -10,13 +10,21 @@ const voteRoute = require('./routes/votes');
 
 const app = express();
 
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'));
+}
+
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
 
-// app.use('/', express.static(path.join(__dirname, '/public')))
+app.use('/', express.static(path.join(__dirname, '/public')))
 app.use('/votes', voteRoute);
 app.use('/cats', catRoute);
 
